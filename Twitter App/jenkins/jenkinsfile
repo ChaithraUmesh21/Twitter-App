@@ -10,7 +10,7 @@ pipeline {
         GIT_REPO_NAME = "Twitter-App"
         GIT_USER_NAME = "ChaithraUmesh21"
     }
-ß
+
     tools {
         jdk 'java-17'
         maven 'maven'
@@ -38,7 +38,7 @@ pipeline {
         stage('Static Code Analysis (SonarQube)') {
             steps {
                 withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${http://52.211.71.150:9000}"
+                    sh "mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}"
                 }
             }
         }
@@ -112,7 +112,7 @@ pipeline {
                     body: body,
                     to: 'chaithraumesh.96@gmail.com',
                     from: 'chaithrahu.96@gmail.com',
-                    replyTo: 'chaithrahu.96@gmail.com,
+                    replyTo: 'chaithrahu.96@gmail.com',
                     mimeType: 'text/html',
                     attachmentsPattern: '**/target/sonar-report.html'  // Path to the SonarQube report file
                 )
